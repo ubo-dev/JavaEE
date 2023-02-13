@@ -1,8 +1,8 @@
 package com.ubo.northwind.entities.concretes;
 
-import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Generated;
+
+import javax.persistence.*;
 
 @Data
 @Entity
