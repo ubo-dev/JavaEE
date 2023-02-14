@@ -1,7 +1,7 @@
 package com.ubo.northwind.entities.concretes;
 
 import lombok.Data;
-
+import com.ubo.northwind.entities.concretes.Category;
 import javax.persistence.*;
 
 @Data
@@ -28,6 +28,10 @@ public class Product
 
     @Column(name = "quantity_per_unit")
     private String QuantityPerUnit;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Product(int id, int categoryId, String productName, double unitPrice, short unitsInStock, String quantityPerUnit) {
         this.id = id;
