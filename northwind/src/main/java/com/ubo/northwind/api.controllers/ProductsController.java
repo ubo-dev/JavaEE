@@ -31,4 +31,22 @@ public class ProductsController
     {
         return this.productService.add(product);
     }
+
+    @GetMapping("/getByProductName")
+    public DataResult<Product> getByProductName(@RequestParam String productName)
+    {
+        return this.productService.getByProductName(productName);
+    }
+
+    @GetMapping("/getByProductNameAndCategory")
+    public DataResult<Product> getByProductNameAndCategory(@RequestParam("productName") String productName,@RequestParam("category") int categoryId)
+    {
+        return this.productService.getByProductNameAndCategory(productName,categoryId);
+    }
+
+    @GetMapping("/getByProductNameContains")
+    public DataResult<List<Product>> getByProductNameContains(@RequestParam String productName)
+    {
+        return this.productService.getByProductNameContains(productName);
+    }
 }

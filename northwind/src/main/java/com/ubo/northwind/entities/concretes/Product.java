@@ -1,10 +1,15 @@
 package com.ubo.northwind.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import com.ubo.northwind.entities.concretes.Category;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="products")
 public class Product
@@ -27,23 +32,10 @@ public class Product
     private short unitsInStock;
 
     @Column(name = "quantity_per_unit")
-    private String QuantityPerUnit;
+    private String quantityPerUnit;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
-    public Product(int id, String productName, double unitPrice, short unitsInStock, String quantityPerUnit) {
-        this.id = id;
-        //this.categoryId = categoryId;
-        this.productName = productName;
-        this.unitPrice = unitPrice;
-        this.unitsInStock = unitsInStock;
-        QuantityPerUnit = quantityPerUnit;
-    }
-
-    public Product() {
-
-    }
 
 }

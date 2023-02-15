@@ -8,6 +8,8 @@ import com.ubo.northwind.core.utilites.results.SuccessResult;
 import com.ubo.northwind.dataAccess.abstracts.ProductDao;
 import com.ubo.northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +30,49 @@ public class ProductManager implements ProductService
     }
 
     @Override
+    public DataResult<List<Product>> getAll(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        return new SuccessDataResult<List<Product>>(this.productDao.findAll(pageable).getContent());
+    }
+
+    @Override
     public Result add(Product product) {
         this.productDao.save(product);
         return new SuccessResult("Product has been added.");
+    }
+
+    @Override
+    public DataResult<Product> getByProductName(String productName) {
+        return new SuccessDataResult<Product>(this.productDao.getByProductName(productName),"Data is listed");
+    }
+
+    @Override
+    public DataResult<Product> getByProductNameAndCategory(String productName, int categoryId) {
+        return new SuccessDataResult<Product>(this.productDao.getByProductNameAndCategory_CategoryId(productName,categoryId),"Data is listed");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameOrCategory(String productName, int categoryId) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByProductNameOrCategory_CategoryId(productName,categoryId),"Data is listed");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByCategoryIn(List<Integer> categories) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByCategory_CategoryIdIn(categories),"Data is listed");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameContains(String productName) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByProductNameContains(productName),"Data is listed");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameStartsWith(String productName) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByProductNameStartsWith(productName),"Data is listed");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByProductNameAndCategory(productName,categoryId),"Data is listed");
     }
 }
