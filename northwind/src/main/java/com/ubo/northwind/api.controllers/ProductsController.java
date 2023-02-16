@@ -4,6 +4,7 @@ import com.ubo.northwind.business.abstracts.ProductService;
 import com.ubo.northwind.core.utilites.results.DataResult;
 import com.ubo.northwind.core.utilites.results.Result;
 import com.ubo.northwind.entities.concretes.Product;
+import com.ubo.northwind.entities.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,12 @@ public class ProductsController
     public DataResult<List<Product>> getAll()
     {
         return this.productService.getAll();
+    }
+
+    @GetMapping("/getProductWithCategoryDetails")
+    DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails()
+    {
+        return this.productService.getProductWithCategoryDto();
     }
 
     @GetMapping("/getAllByPage")
