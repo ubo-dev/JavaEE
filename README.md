@@ -1,5 +1,5 @@
-# JavaEE
-These are the projects that I use to learn JavaEE, Spring and also React.
+# Spring-Bootcamp
+These are the projects that I use to learn Spring and also React.
 
 
 Project Nothwind
