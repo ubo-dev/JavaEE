@@ -1,4 +1,6 @@
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +12,19 @@ public class Main {
         //printCoursesContains(List.of("math","algorithm","programming","chemistry","history","biology"),"m");
         //printSquareOfNumbers(List.of(12,9,13,4,6,2,4,12,15));
         //printCubesOfNumbers(List.of(12,9,13,4,6,2,4,12,15));
-        printLengthsOfCourses(List.of("math","algorithm","programming","chemistry","history","biology"));
+        //printLengthsOfCourses(List.of("math","algorithm","programming","chemistry","history","biology"));
+
+        List<String> fruits = List.of("apple","banana","watermelon","orange","cherry","strawberry");
+
+        Predicate<? super String> predicate = fruit -> fruit.contains("q");
+        Optional<String> optional = fruits.stream().filter(predicate).findFirst();
+        System.out.println(optional);
+        System.out.println(optional.isEmpty());
+        System.out.println(optional.isPresent());
+        // System.out.println(optional.get());
+        // get() will give us a compile error if value is not present
+        // we should use orElse function because it will give the object if its found or will print "Nothing found." otherwise.
+        System.out.println(optional.orElse("Nothing found."));
 
     }
 
