@@ -1,5 +1,6 @@
 package com.ubo.restfulwebservices.user;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -42,5 +43,13 @@ public class UserResource
 
         return ResponseEntity.created(location).build();
     }
+
+    @DeleteMapping("/users")
+    public void deleteUser(Integer id)
+    {
+        userDaoService.deleteUser(id);
+    }
+
+
 
 }
