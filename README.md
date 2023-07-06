@@ -1,5 +1,5 @@
 # Spring-Bootcamp
-These are the projects that I use to learn Spring and also React.
+These are the projects that I use to learn Spring.
 
 
 Project Nothwind
