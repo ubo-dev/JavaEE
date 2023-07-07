@@ -21,7 +21,7 @@ public class HelloWorldController
     @GetMapping(path = "/hello-world-internationalized")
     public String helloWorldInternationalized() {
         Locale locale = LocaleContextHolder.getLocale();
-        return messageSource.getMessage("good.morning.message", null, "Default Message", locale );
+        return messageSource.getMessage("good.morning.messageA", null, "Default Message", locale );
 //		- Example: `en` - English (Good Morning)
 //		- Example: `nl` - Dutch (Goedemorgen)
 //		- Example: `fr` - French (Bonjour)
