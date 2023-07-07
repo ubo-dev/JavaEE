@@ -1,6 +1,9 @@
 package com.ubo.restfulwebservices.user;
 
+import jakarta.persistence.EntityManager;
 import jakarta.validation.Valid;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +11,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserResource
@@ -25,11 +31,17 @@ public class UserResource
     }
 
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id) {
+    public EntityModel<User> retrieveUser(@PathVariable int id)
+    {
         User user = userDaoService.findUser(id);
-        if (user == null) throw new UserNotFoundException("id:" + id);
+        if (user == null) throw new  UserNotFoundException("id" + id);
 
-        return user;
+        EntityModel<User> entityModel = EntityModel.of(user);
+
+        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).getAllUser());
+        entityModel.add(link.withRel("all-user"));
+
+        return entityModel;
     }
 
     @PostMapping("/users")
@@ -50,6 +62,8 @@ public class UserResource
     {
         userDaoService.deleteUser(id);
     }
+
+
 
 
 
