@@ -1,13 +1,13 @@
-package com.ubo.microservices;
+package com.ubo.microservices.springcloudconfigserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicroServicesApplication {
+public class SpringCloudConfigServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MicroServicesApplication.class, args);
+        SpringApplication.run(SpringCloudConfigServerApplication.class, args);
     }
 
 }
