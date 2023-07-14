@@ -18,6 +18,9 @@ public class CurrencyConversionController
     @Autowired
     private CurrencyExchangeProxy proxy;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversion calculateCurrencyConversionFeign(
             @PathVariable String from,
